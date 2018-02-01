@@ -1,0 +1,24 @@
+sqoop 是一个数据和hdfs上面数据同步的工具，使用原理是基于hadoop的mapreduce。
+把数据库里面的数据同步到hdfs的命令，使用的时候需要把相应的驱动包放入sqoop的lib包里面
+1：数据库中的数据导入到hdfs上
+sqoop import --connect jdbc:mysql://192.168.1.10:3306/bigdata --username root --password 123  --table trade_detail --columns 'id, account, income, expenses'
+2:制定输出路径，指定数据分隔符
+sqoop import --connect jdbc:mysql://192.168.1.10:3306/bigdata --username root --password 123  --table trade_detail --target-dir '/sqoop/td' --fields-terminated-by '\t'
+
+
+我在使用的命令是
+导入sys_log
+ ./sqoop import --connect jdbc:mysql://192.168.1.202/zhsx_rf --username root --password 123456  --table sys_log --target-dir '/mysql/zhsx/sys_log' --fields-terminated-by '\t' -m 1
+
+ 导入 user
+ ./sqoop import --connect jdbc:mysql://192.168.1.202/zhsx_rf --username root --password 123456  --table user --target-dir '/mysql/zhsx/user' --fields-terminated-by '\t' -m 1
+ 
+ 导入 sys_dict
+  ./sqoop import --connect jdbc:mysql://192.168.1.202/zhsx_rf --username root --password 123456  --table sys_dict --target-dir '/mysql/zhsx/sys_dict' --fields-terminated-by '\t' -m 1
+  
+导入web_pj
+	./sqoop import --connect jdbc:mysql://192.168.1.202/zhsx_rf --username root --password 123456  --table web_pj --target-dir '/mysql/zhsx/web_pj' --fields-terminated-by '\t' -m 1  
+导入lo_schedule
+	./sqoop import --connect jdbc:mysql://192.168.1.202/zhsx_rf --username root --password 123456  --table lo_schedule --target-dir '/mysql/zhsx/lo_schedule' --fields-terminated-by '\t' -m 1  
+导入offLine_videoResources
+	./sqoop import --connect jdbc:mysql://192.168.1.202/zhsx_rf --username root --password 123456  --table offLine_videoResources --target-dir '/mysql/zhsx/offLine_videoResources' --fields-terminated-by '\t' -m 1  
